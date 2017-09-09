@@ -1,0 +1,127 @@
+### ATTENTION: CHANGE THE NEXT VALUE TO YOUR NEEDS, this is the only file needing edit these value, other configuration files are parametrized ###
+
+# Defining Template used in graph and fixed object monitoring
+## Network Interface to monitor
+template1 wlp3s0
+## Custom Folder
+template2 /root
+## Share Folder
+template3 /share
+
+background yes
+update_interval 1
+
+cpu_avg_samples 1
+net_avg_samples 2
+temperature_unit celsius
+
+double_buffer yes
+no_buffers yes
+text_buffer_size 2048
+override_utf8_locale yes
+use_xft yes
+xftfont caviar dreams:size=10
+xftalpha 0.5
+uppercase yes
+
+gap_x 40
+gap_y 70
+minimum_size 300 900
+maximum_width 350
+
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_argb_visual yes
+own_window_colour 000000
+own_window_argb_value 0
+own_window_hints undecorated,sticky,skip_taskbar,skip_pager,below
+
+border_inner_margin 0
+border_outer_margin 0
+alignment top_right
+#ximerama_head = 0
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+show_graph_range yes
+
+# Red
+color2 CD5C5C
+# White
+color3 FFFFFF
+# Verde
+color4 20B2AA
+# Arancio
+color5 FFA07A
+
+
+#Loading lua script for drawning rings
+#lua_load /root/Documents/Conky Themes/conkycyannet_tar_by_dvdred-daiimlg/CyanNet/seamod_rings.lua
+#lua_draw_hook_post main
+
+## System information using conky capabilities
+
+TEXT
+${color4}┌────────────────────┐
+│${offset 5}${font Monospace:normal:size=10}${color5}SYSTEM: $nodename${offset 3}${color4}      ├────────────────────┐
+${color4}└────────────────────┘                    │
+${offset 15}${font Monospace:normal:size=10}${color5}Architecture: ${color4}MANJARO 1.7.0 ${offset 9}   ────────┤
+${offset 15}${font Monospace:normal:size=10}${color5}Local Time: ${color4}$time${offset 9}──────┘ │                
+${offset 336}│
+${offset 32}┌─────────────────────────────────────┘
+# Showing CPU Graph
+${offset 32}│
+#${offset 120}${cpugraph 40,183 666666 666666}${voffset -25}
+ ┌──┴──┐
+┌┤ ${font Monospace:normal:size=10}${color5}CPU${color4} │
+│└─────┘
+│
+├── ${font Ubuntu:normal:size=9}${color2}CPU ${if_existing /sys/class/hwmon/hwmon0/temp1_input}${hwmon 0 temp 1}°C${else}${if_existing /sys/class/hwmon/hwmon1/temp1_input}${hwmon 1 temp 1}°C${else}temp not detected${endif}{else}temp not detected${endif}${if_existing /sys/class/hwmon/hwmon1/temp2_input} -  GPU ${hwmon 1 temp 2}°C${else} - GPU temp not detected${endif}
+# Showing TOP 5 CPU-consumers
+${font Monospace:normal:size=10}${color4}│
+${font Monospace:normal:size=10}${color4}├───────── ${font Monospace:normal:size=10}${color5}${top name 1}${alignr}${color2}${top cpu 1}%
+${color4}│${offset 10}${font Monospace:normal:size=10}${color4}└──────── ${font Monospace:normal:size=10}${color5}${top name 2}${alignr}${color2}${top cpu 2}%
+${color4}│${offset 20}${font Monospace:normal:size=10}${color4}└──────── ${font Monospace:normal:size=10}${color5}${top name 3}${alignr}${color2}${top cpu 3}%
+${color4}│${offset 30}${font Monospace:normal:size=10}${color4}└──────── ${font Monospace:normal:size=10}${color5}${top name 4}${alignr}${color2}${top cpu 4}%
+${color4}│${offset 40}${font Monospace:normal:size=10}${color4}└──────── ${font Monospace:normal:size=10}${color5}${top name 5}${alignr}${color2}${top cpu 5}%
+${color4}└─────────┐ 
+#Showing memory part with TOP 5
+       ┌─────┐
+${offset 40}┌┬┤${offset 9}${font Monospace:normal:size=10}${color5}MEM${color4}${offset 7}│
+     ││└─────┘
+     ││
+${color4}${offset 40}│└──────── ${font Monospace:normal:size=10}${color5}${top_mem name 1}${color2}${alignr}${top_mem mem 1}%
+${color4}${offset 40}│  └──────── ${font Monospace:normal:size=10}${color5}${top_mem name 2}${color2}${alignr}${top_mem mem 2}%
+${color4}${offset 40}│    └──────── ${font Monospace:normal:size=10}${color5}${top_mem name 3}${color2}${alignr}${top_mem mem 3}%
+${color4}${offset 40}│      └──────── ${font Monospace:normal:size=10}${color5}${top_mem name 4}${color2}${alignr}${top_mem mem 4}%
+${color4}${offset 40}│        └──────── ${font Monospace:normal:size=10}${color5}${top_mem name 4}${color2}${alignr}${top_mem mem 5}%
+${color4}     │
+${color4}     │    ┌────────────────────┐
+${color4}${offset 40}└────┤ ${color5}HACKER'S MANIFESTO${color4}${offset 8}│
+${color4}          └─────────┬──────────┘  
+${color4}                    │ 
+${color4}┌─────────────────────────────────────────┐
+${color4}│${color2} We explore... and you call us criminals.${color4}│
+${color4}│${color2} We seek after knowledge... and you call${color4} │
+${color4}│${color2} us criminals. We exist without skin${color4}     │
+${color4}│${color2} color, without nationality, without ${color4}    │
+${color4}│${color2} religious bias... and you call us${color4}       │
+${color4}│${color2} criminals. You build atomic bombs, you ${color4} │
+${color4}│${color2} wage wars, murder, cheat, and lie to us ${color4}│
+${color4}│${color2} and try to make us believe it's for our${color4} │ 
+${color4}│${color2} own good, yet we're the criminals.${color4}      │
+${color4}│${color2} Yes I am a criminal. My crime is that${color4}   │
+${color4}│${color2} of curiosity. My crime is that of${color4}       │
+${color4}│${color2} judging people by what they say and ${color4}    │
+${color4}│${color2} think, not what they look like. My${color4}      │
+${color4}│${color2} crime is that of outsmarting you, ${color4}      │
+${color4}│${color2} something that you will never forgive${color4}   │
+${color4}│${color2} me. I am a hacker, and this is my${color4}       │
+${color4}│${color2} manifesto. You may stop this ${color4}           │
+${color4}│${color2} individual, but you can't stop us${color4}       │
+${color4}│${color2} all...after all, we're all alike.${color4}       │
+${color4}└─────────────────────────────────────────┘ 
